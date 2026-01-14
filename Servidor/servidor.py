@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify
 
-
 app = Flask(__name__)
-
 
 # --- Ruta GET ---
 # Ejemplo: http://localhost:5000/saludo?nombre=Juan
@@ -12,9 +10,6 @@ def saludo():
     if not nombre:
         return jsonify({'error': 'Falta el parámetro "nombre"'}), 400
     return jsonify({'mensaje': f'Hola, {nombre}!'})
-
-
-
 
 # --- Ruta POST ---
 # Ejemplo: POST a http://localhost:5000/sumar con body JSON {"numero": 5}
@@ -29,9 +24,6 @@ def sumar():
     except ValueError:
         return jsonify({'error': '"numero" debe ser un entero'}), 400
     return jsonify({'resultado': resultado})
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
