@@ -1,0 +1,69 @@
+classDiagram
+    class Usuari {
+        +String nom
+        +String correu
+        +String contrasenya
+        +String tipusUsuari
+        +registrar()
+        +iniciarSessio()
+        +tancarSessio()
+    }
+
+
+    class Client {
+        // Hereda de Usuari
+        +cercarEsdeveniments()
+        +comprarEntrada()
+        +veureEntrades()
+    }
+
+
+    class Administrador {
+        // Hereda de Usuari
+        +crearEsdeveniment()
+        +modificarEsdeveniment()
+        +eliminarEsdeveniment()
+    }
+
+
+    class Esdeveniment {
+        +String nom
+        +String descripcio
+        +Date data
+        +String ubicacio
+        +int entradesDisponibles
+        +actualitzarInformacio()
+        +afegirEntrada()
+        +obtenirEntradesDisponibles()
+    }
+
+
+    class Entrada {
+        +float preu
+        +String estat  // Disponible | Venuda
+        +marcarComVenuda()
+        +esDisponible()
+        +obtenirPreu()
+    }
+
+
+    class Pagament {
+        +String metode
+        +Date dataPagament
+        +float import
+        +processarPagament()
+        +validarPagament()
+        +obtenirDetalls()
+    }
+
+
+    %% Herencia
+    Usuari <|-- Client
+    Usuari <|-- Administrador
+
+
+    %% Relaciones
+    Client "" --> "" Entrada : compra
+    Administrador "" --> "" Esdeveniment : gestiona
+    Esdeveniment "" --> "" Entrada : té
+    Entrada "" --> "" Pagament : associat a
